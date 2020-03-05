@@ -67,9 +67,10 @@ int server::sendPacket(string message)
 string server::read()
 {
     char buffer[4096];
-    string message;
+    string message = "";
     valread = ::read(new_socket, buffer, 4096);
-    message = buffer;
+    if (valread)
+        message = string(buffer, static_cast<unsigned long>(valread));
 
     return message;
 }

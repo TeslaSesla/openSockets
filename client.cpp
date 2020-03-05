@@ -33,9 +33,10 @@ int client::connect()
 string client::read()
 {
     char buffer[4096];
-    string message;
-    valread = ::read(sock, buffer, 1024);
-    message = buffer;
+    string message = "";
+    valread = ::read(sock, buffer, 4096);
+    if (valread)
+        message = string(buffer, static_cast<unsigned long>(valread));
 
     return message;
 }
