@@ -19,3 +19,12 @@ myServer.sendPacket("Hello!");    //Send message
 ```
 
 ### Client class
+```C++
+unsigned short int port = 50253;  //Client/server port
+client myClient(port);
+myClient.init("127.0.0.1"); //Initializate connection
+myClient.connect();         //Create connection
+
+myClient.send("Hi!");             //Send message
+cout << myClient.read() << endl;  //Read message
+```
