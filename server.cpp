@@ -28,8 +28,7 @@ int server::startListen()
     }
 
     // Forcefully attaching socket to the port
-    if (bind(server_fd, reinterpret_cast<struct sockaddr *>(&address),
-                                 sizeof(address))<0)
+    if (bind(server_fd, reinterpret_cast<struct sockaddr *>(&address), sizeof(address)) < 0)
     {
         //Bind failed
         return -3;
@@ -49,8 +48,7 @@ int server::accept()
 {
     int addrlen = sizeof(address);
 
-    if ((new_socket = ::accept(server_fd, reinterpret_cast<struct sockaddr *>(&address),
-                             reinterpret_cast<socklen_t*>(&addrlen)))<0)
+    if ((new_socket = ::accept(server_fd, reinterpret_cast<struct sockaddr *>(&address), reinterpret_cast<socklen_t*>(&addrlen))) < 0)
     {
         return -1;
     }
@@ -58,9 +56,10 @@ int server::accept()
     return 0;
 }
 
-int server::sendPacket(string message)
+int server::send(string message)
 {
-    send(new_socket, message.c_str(), message.length(), 0);
+    //Call from global namespace in sys/socket.h
+    ::send(new_socket, message.c_str(), message.length(), 0);
     return 0;
 }
 

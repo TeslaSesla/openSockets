@@ -18,7 +18,7 @@ public:
     int     startListen();
     int     accept();
     string  read();
-    int     sendPacket(string);
+    int     send(string);
 
 private:
     int     server_fd, new_socket;

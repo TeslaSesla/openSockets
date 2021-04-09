@@ -10,6 +10,7 @@ int main()
     int select = 0;
     cout << "Server - 0" << endl <<
             "Client - 1" << endl <<
+            "Exit   - 2" << endl <<
             "> ";
     cin >> select;
 
@@ -22,7 +23,7 @@ int main()
         myServer.accept();
 
         cout << myServer.read();
-        myServer.sendPacket("Hello!");
+        myServer.send("Hello!");
     }
     //Client side
     else if (select == 1)
@@ -30,9 +31,14 @@ int main()
         client myClient(8080);
         myClient.init("127.0.0.1");
         myClient.connect();
-        myClient.send("Hi!");
+
+        char *str = "Hello world";
+
+        myClient.send(str, sizeof(str));
         cout << myClient.read() << endl;
     }
+    else if (select == 2)
+        cout << "Goodbue" << endl;
     else
         cout << "Unknown mode selected" << endl;
 
