@@ -1,6 +1,9 @@
 # openSockets
 *NIX-based TCP client/server with OOP structure
 
+[![CMake](https://github.com/TeslaSesla/openSockets/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/TeslaSesla/openSockets/actions/workflows/cmake.yml)
+
+
 ### Include
 ```C++
 #include "server.h" //Server class
