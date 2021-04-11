@@ -7,6 +7,10 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string>
+#include <stdexcept>
+
+//Read buffer size
+#define BUFFER_SIZE 512
 
 using namespace std;
 
@@ -17,7 +21,7 @@ public:
 
     int     startListen();
     int     accept();
-    string  read();
+    byte*   read();
     int     send(string);
 
 private:
@@ -25,6 +29,8 @@ private:
     struct  sockaddr_in address;
     ssize_t valread;
     int     opt = 1;
+
+    byte buffer[BUFFER_SIZE];
 };
 
 #endif // SERVER_H

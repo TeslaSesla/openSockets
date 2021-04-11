@@ -60,13 +60,14 @@ int server::send(string message)
     return 0;
 }
 
-string server::read()
+byte* server::read()
 {
-    char buffer[4096];
-    string message = "";
-    valread = ::read(this->new_socket, buffer, 4096);
-    if (valread)
-        message = string(buffer, static_cast<unsigned long>(valread));
+    valread = ::read(this->new_socket, this->buffer, 4096);
+       
+    //message = reinterpret_cast<char*>(buffer);
 
-    return message;
+    if (valread)
+        return this->buffer;
+
+    throw runtime_error("Valread error");
 }
