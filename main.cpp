@@ -32,7 +32,7 @@ int main()
         myClient.init("127.0.0.1");
         myClient.connect();
 
-        char *str = "Hello world";
+        char str[] = "Hello world";
 
         myClient.send(str, sizeof(str));
         cout << myClient.read() << endl;
