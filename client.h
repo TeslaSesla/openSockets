@@ -6,6 +6,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ public:
     int     init(string address);
     int     connect();
     string  read();
-    void     send(string);
+    void    send(void*, size_t);
 
 private:
     int sock = 0;

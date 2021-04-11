@@ -41,7 +41,7 @@ string client::read()
     return message;
 }
 
-void client::send(string message)
+void client::send(void *data, size_t data_size)
 {
-    ::send(sock, message.c_str(), message.length(), 0);
+    ::send(sock, data, data_size, 0);
 }
