@@ -40,7 +40,7 @@ byte* client::read()
     throw runtime_error("Valread error");
 }
 
-void client::send(void *data, size_t data_size)
+void client::send(void *data, ssize_t data_size)
 {
     ::send(this->sock, data, data_size, 0);
 }

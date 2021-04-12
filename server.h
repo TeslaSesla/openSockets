@@ -22,7 +22,7 @@ public:
     int     startListen();
     int     accept();
     byte*   read();
-    int     send(string);
+    void    send(void*, ssize_t);
 
 private:
     int     server_fd, new_socket;

@@ -20,7 +20,7 @@ public:
     int     init(string address);
     int     connect();
     byte*   read();
-    void    send(void*, size_t);
+    void    send(void*, ssize_t);
 
 private:
     int sock = 0;

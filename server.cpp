@@ -45,7 +45,7 @@ int server::accept()
 {
     int addrlen = sizeof(address);
 
-    if ((this->new_socket = ::accept(server_fd, reinterpret_cast<struct sockaddr *>(&address), reinterpret_cast<socklen_t*>(&addrlen))) < 0)
+    if ((this->new_socket = ::accept(this->server_fd, reinterpret_cast<struct sockaddr *>(&address), reinterpret_cast<socklen_t*>(&addrlen))) < 0)
     {
         return -1;
     }
@@ -53,11 +53,10 @@ int server::accept()
     return 0;
 }
 
-int server::send(string message)
+void server::send(void* data, ssize_t data_size)
 {
     //Call from global namespace in sys/socket.h
-    ::send(this->new_socket, message.c_str(), message.length(), 0);
-    return 0;
+    ::send(this->new_socket, data, data_size, 0);
 }
 
 byte* server::read()

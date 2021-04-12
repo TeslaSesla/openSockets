@@ -23,7 +23,8 @@ int main()
 
         cout << reinterpret_cast<char*>(myServer.read()) << endl;
 
-        myServer.send("Hello!");
+        char str[] = "Hello!";
+        myServer.send(str, sizeof(str));
     }
     //Client side
     else if (select == 1)
