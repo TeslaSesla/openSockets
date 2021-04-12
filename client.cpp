@@ -9,7 +9,7 @@ client::client(unsigned short int port)
 int client::init(string address)
 {
     //Creating socket
-    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    if ((this->sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
         return -1;  //Socket creation error
 
     // Convert IPv4 and IPv6 addresses from text to binary form
@@ -21,7 +21,7 @@ int client::init(string address)
 
 int client::connect()
 {
-    if (::connect(sock, reinterpret_cast<struct sockaddr *>(&serv_addr), sizeof(serv_addr)) < 0)
+    if (::connect(this->sock, reinterpret_cast<struct sockaddr *>(&serv_addr), sizeof(serv_addr)) < 0)
     {
         //Connection failded
         return -1;
@@ -30,18 +30,17 @@ int client::connect()
     return 0;
 }
 
-string client::read()
+byte* client::read()
 {
-    char buffer[4096];
-    string message = "";
-    valread = ::read(sock, buffer, 4096);
+    valread = ::read(this->sock, this->buffer, BUFFER_SIZE);
+    
     if (valread)
-        message = string(buffer, static_cast<unsigned long>(valread));
-
-    return message;
+        return this->buffer;
+        
+    throw runtime_error("Valread error");
 }
 
 void client::send(void *data, size_t data_size)
 {
-    ::send(sock, data, data_size, 0);
+    ::send(this->sock, data, data_size, 0);
 }

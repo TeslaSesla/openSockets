@@ -10,6 +10,8 @@
 
 using namespace std;
 
+#define BUFFER_SIZE 512
+
 class client
 {
 public:
@@ -17,13 +19,16 @@ public:
 
     int     init(string address);
     int     connect();
-    string  read();
+    byte*   read();
     void    send(void*, size_t);
 
 private:
     int sock = 0;
     ssize_t valread;
     struct sockaddr_in serv_addr;
+
+    byte buffer[BUFFER_SIZE];
+
 };
 
 #endif // CLIENT_H

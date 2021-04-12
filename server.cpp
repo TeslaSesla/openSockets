@@ -63,9 +63,7 @@ int server::send(string message)
 byte* server::read()
 {
     valread = ::read(this->new_socket, this->buffer, 4096);
-       
-    //message = reinterpret_cast<char*>(buffer);
-
+    
     if (valread)
         return this->buffer;
 

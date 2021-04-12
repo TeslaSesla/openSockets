@@ -18,11 +18,11 @@ int main()
     if (select == 0)
     {
         server myServer(8080);
-
         myServer.startListen();
         myServer.accept();
 
-        cout << myServer.read();
+        cout << reinterpret_cast<char*>(myServer.read()) << endl;
+
         myServer.send("Hello!");
     }
     //Client side
@@ -33,9 +33,9 @@ int main()
         myClient.connect();
 
         char str[] = "Hello world";
-
         myClient.send(str, sizeof(str));
-        cout << myClient.read() << endl;
+
+        cout << reinterpret_cast<char*>(myClient.read()) << endl;
     }
     else if (select == 2)
         cout << "Goodbue" << endl;
